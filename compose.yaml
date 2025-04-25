@@ -1,0 +1,18 @@
+services:
+  server:
+    build:
+      context: .
+    environment:
+      NODE_ENV: DEVELOPMENT
+      MONGO_URI: mongodb://db:27017/library
+    ports:
+      - 3000:3000
+  db:
+    image: mongo:8.0
+    container_name: db
+    volumes:
+      - library-db:/var/lib/mongo/data
+    ports:
+      - "27017:27017"
+volumes:
+  library-db:
